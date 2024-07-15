@@ -3,6 +3,7 @@
 import axios from "axios";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
+import { Toaster } from "react-hot-toast";
 
 
 export default function VerifyEmailPage() {
@@ -17,7 +18,7 @@ export default function VerifyEmailPage() {
             setVerified(true);
         } catch (error:any) {
             setError(true);
-            console.log(error.reponse.data);
+            console.log(error.response.data.error);
             
         }
 
@@ -36,6 +37,7 @@ export default function VerifyEmailPage() {
     }, [token]);
 
     return(
+        <>
         <div className="flex flex-col items-center justify-center min-h-screen py-2">
 
             <h1 className="text-4xl">Verify Email</h1>
@@ -56,6 +58,8 @@ export default function VerifyEmailPage() {
                 </div>
             )}
         </div>
+         <div><Toaster/></div>
+        </>
     )
 
 }

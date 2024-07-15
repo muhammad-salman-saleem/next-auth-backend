@@ -3,7 +3,7 @@ import Link from "next/link";
 import React, { useEffect } from "react";
 import {useRouter} from "next/navigation";
 import axios from "axios";
-import { toast } from "react-hot-toast";
+import { toast, Toaster } from "react-hot-toast";
 
 
 
@@ -26,9 +26,9 @@ export default function SignupPage() {
             router.push("/login");
             
         } catch (error:any) {
-            console.log("Signup failed", error.message);
+            console.log("Signup failed", error.response.data.error);
             
-            toast.error(error.message);
+            toast.error(error.response.data.error);
         }finally {
             setLoading(false);
         }
@@ -44,6 +44,7 @@ export default function SignupPage() {
 
 
     return (
+        <>
     <div className="flex flex-col items-center justify-center min-h-screen py-2">
         <h1>{loading ? "Processing" : "Signup"}</h1>
         <hr />
@@ -79,6 +80,8 @@ export default function SignupPage() {
             className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600">{buttonDisabled ? "No signup" : "Signup"}</button>
             <Link href="/login">Visit login page</Link>
         </div>
+        <div><Toaster/></div>
+        </>
     )
 
 }
