@@ -16,12 +16,12 @@ export const sendEmail = async({email, emailType, userId}:any) => {
                 {forgotPasswordToken: hashedToken, forgotPasswordTokenExpiry: Date.now() + 3600000})
         }
 
-        var transport = nodemailer.createTransport({
-            host: "bulk.smtp.mailtrap.io",
+          var transport = nodemailer.createTransport({
+            host: "sandbox.smtp.mailtrap.io",
             port: 2525,
             auth: {
-              user: "api",
-              pass: "3ee50916d05481711cb8679cee932972"
+              user: "750d62c82ebdd3",
+              pass: "4359536c332958"
             }
           });
 

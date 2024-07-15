@@ -20,6 +20,9 @@ export async function POST(request: NextRequest){
         }
         console.log("user exists");
         
+        if(!user.isVerfied){
+            return NextResponse.json({error: "User note verified"}, {status: 400})
+        }
         
         //check if password is correct
         const validPassword = await bcryptjs.compare(password, user.password)
